@@ -1,8 +1,9 @@
 package com.dyes.bank.models;
 
 import jakarta.persistence.*;
+import  com.dyes.bank.constants.AccountType;
 
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "ACCOUNTS")
@@ -12,15 +13,18 @@ public class Account {
     public User user;
     public @Id Long accountId;
 
-    public Enum accountType;
+//    public Enum accountType;
+    @Enumerated(EnumType.STRING)
+    public AccountType accountType;
     public double balance;
     public int accountNumber;
     public boolean isActive;
-//    public List<Transaction> transactions;
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+    public Set<Transaction> transactions;
 
     public Account() {}
 
-    public Account(User user, Enum accountType, double balance, int accountNumber) {
+    public Account(User user, AccountType accountType, double balance, int accountNumber) {
         this.user = user;
         this. accountType= accountType;
         this.balance = balance;
@@ -45,7 +49,7 @@ public class Account {
         return accountType;
     }
 
-    public void setAccountType(Enum accountType) {
+    public void setAccountType(AccountType accountType) {
         this.accountType = accountType;
     }
 

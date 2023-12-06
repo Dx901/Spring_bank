@@ -15,7 +15,7 @@ public class Transaction {
     public @Id int transactionId;
 
     @Enumerated(EnumType.STRING)
-    public TransactionType tranasctionType;
+    public TransactionType transactionType;
     public LocalDateTime timestamp;
     public double amount;
 
@@ -25,7 +25,7 @@ public class Transaction {
 
     public Transaction(Account account, TransactionType tranasctionType, double amount) {
         this.account = account;
-        this.tranasctionType = tranasctionType;
+        this.transactionType = transactionType;
         this.amount = amount;
         this.timestamp = LocalDateTime.now();
     }
@@ -43,11 +43,11 @@ public class Transaction {
     }
 
     public TransactionType getType() {
-        return tranasctionType;
+        return transactionType;
     }
 
-    public void setType(TransactionType type) {
-        this.tranasctionType = tranasctionType;
+    public void setTransactionType(TransactionType transactionType) {
+        this.transactionType = transactionType;
     }
 
     public double getAmount() {
