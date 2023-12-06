@@ -41,6 +41,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<!-- Use the version that fits your needs -->
+			<version>42.6.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
