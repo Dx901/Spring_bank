@@ -9,18 +9,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping(
+        value = "/users",
+        produces = "application/json",
+        method = RequestMethod.GET)
 public class UserController {
 
     @Autowired
     public UserService userService;
 
-    @GetMapping
+    @GetMapping("/users")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
-    @GetMapping("users/{userId}")
+    @GetMapping("/{userId}")
     public User getUserById(@PathVariable Long userId) {
         return userService.getUserById(userId);
     }
@@ -30,12 +33,12 @@ public class UserController {
         return userService.createUser(user);
     }
 
-    @PutMapping("users/{userId}")
+    @PutMapping("/{userId}")
     public User updateUser(@PathVariable Long userId, @RequestBody User user) {
         return userService.updateUser(userId, user);
     }
 
-    @DeleteMapping("users/{userId}")
+    @DeleteMapping("/{userId}")
     public void deleteUser(@PathVariable Long userId) {
         userService.deleteUser(userId);
     }

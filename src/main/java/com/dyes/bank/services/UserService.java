@@ -30,10 +30,10 @@ public class UserService {
     }
 
     public User updateUser(Long userId, User user) {
-        //Firts check if the user exists
-        Optional<User> existingUserOtional = userRepository.findById(userId);
-        if (existingUserOtional.isPresent()) {
-            User existingUser = existingUserOtional.get();
+        //First check if the user exists
+        Optional<User> existingUserOptional = userRepository.findById(userId);
+        if (existingUserOptional.isPresent()) {
+            User existingUser = existingUserOptional.get();
 
             //Update now with the new data
             existingUser.setName(user.getName());
