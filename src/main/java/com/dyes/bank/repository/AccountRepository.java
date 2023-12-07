@@ -1,10 +1,9 @@
 package com.dyes.bank.repository;
 
-import com.dyes.bank.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import com.dyes.bank.models.Account;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-
+public interface AccountRepository extends JpaRepository<Account, Long> {
 }
