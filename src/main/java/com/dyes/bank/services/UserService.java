@@ -1,6 +1,7 @@
 package com.dyes.bank.services;
 
 import com.dyes.bank.exceptions.UserNotFoundException;
+import com.dyes.bank.models.Account;
 import com.dyes.bank.models.User;
 import com.dyes.bank.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,6 @@ import java.util.Optional;
 
 @Service
 public class UserService {
-
-
 
     @Autowired
     public UserRepository userRepository;
@@ -50,4 +49,6 @@ public class UserService {
     public void deleteUser(Long userId) {
         userRepository.deleteById(userId);
     }
+
+
 }

@@ -1,6 +1,7 @@
 package com.dyes.bank.models;
 
 import jakarta.persistence.*;
+import java.math.BigDecimal;
 
 import java.util.Set;
 
@@ -10,33 +11,31 @@ import java.util.Set;
 public class User {
 
     @Id
+    @GeneratedValue
     @Column(name = "user_id")
+
     public Long userId;
 
     @OneToMany(mappedBy = "user")
     private Set<Account> accounts;
 
     public String name;
+    public Integer idNumber;
 
     public User() {}
 
-    public User(String name, Long userId) {
-        this.name = name;
-        this.userId = userId;
-    }
 
     public String getName() {
         return this.name;
     }
 
-    public Long getId() {
-        return this.userId;
+    public Integer getIdNumber() {
+        return this.idNumber;
     }
 
 
-
-    public void setId(Long id) {
-        this.userId = id;
+    public void setIdNumber(Integer id) {
+        this.idNumber = id;
     }
 
     public void setName(String name) {
@@ -44,9 +43,6 @@ public class User {
 
     }
 
-    public Long getUserId() {
-        return userId;
-    }
 
     //This ensures yuo add an account to a user when createing a user.
     public void addAccount(Account account) {

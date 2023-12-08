@@ -16,12 +16,10 @@ public class Account {
     @JoinColumn(name = "user_id")
     public User user;
 
-    @Id
-    @Column(name = "account_id")
-    public Long accountId;
-
     public BigDecimal balance;
 
+    @Id
+    @Column(name = "account_number")
     public Long accountNumber;
 
     public Boolean isActive;
@@ -31,13 +29,11 @@ public class Account {
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
     public Set<Transaction> transactions;
 
-    public Account() {
-    }
+    public Account() {}
 
-    public Account(User user, BigDecimal balance, Long accountNumber) {
+    public Account(User user, BigDecimal balance) {
         this.user = user;
         this.balance = balance;
-        this.accountNumber = accountNumber;
         this.accountNumber = generateAccountNumber();
 
     }
@@ -45,16 +41,8 @@ public class Account {
     public Long generateAccountNumber() {
 
         Random random = new Random();
-        int randomSuffix = random.nextInt(10000);
+        return random.nextLong(10000);
 
-        String accountNumberString = user.getUserId() + "" + "" + randomSuffix;
-
-        // Convert the concatenated string to an integer
-        return Long.valueOf(accountNumberString);
-    }
-
-    public Long getAccountId() {
-        return accountId;
     }
 
     public User getUser() {

@@ -33,7 +33,7 @@ public class UserController {
             }
         }
 
-        @PostMapping
+        @PostMapping("/{createuser}")
 //        public User createUser(@RequestBody User user) {
 //            return userService.createUser(user);
 //        }
@@ -42,7 +42,6 @@ public class UserController {
             User createdUser = userService.createUser(user);
             return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
         }
-
 
         @PutMapping("/{userId}")
         public User updateUser(@PathVariable Long userId, @RequestBody User user) {
