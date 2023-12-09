@@ -1,40 +1,53 @@
 package com.dyes.bank.models;
-import  com.dyes.bank.constants.TransactionType;
+
+import com.dyes.bank.constants.TransactionType;
 
 import jakarta.persistence.*;
-
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.Random;
+import java.util.UUID;
 
 @Entity
-@Table(name = "TRANSACTIONS")
+@Table(name = "transactions")
 public class Transaction {
-    @ManyToOne
-    @JoinColumn(name = "accountId", nullable = false)
-    public Account account;
 
-    public @Id int transactionId;
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    public Account account;
 
     @Enumerated(EnumType.STRING)
     public TransactionType transactionType;
-    public LocalDateTime timestamp;
-    public double amount;
 
-    public Transaction() {
-        this.timestamp = LocalDateTime.now();
-    }
+    public BigDecimal amount;
 
-    public Transaction(Account account, TransactionType tranasctionType, double amount) {
+    @Temporal(TemporalType.TIMESTAMP)
+    public Date timestamp;
+
+    @Column(unique = true)
+    public String transactionNumber;
+
+    // Constructors, getters, and setters
+
+    public Transaction() {}
+
+    public Transaction(Account account, BigDecimal amount) {
         this.account = account;
-        this.transactionType = transactionType;
         this.amount = amount;
-        this.timestamp = LocalDateTime.now();
+        this.transactionNumber = UUID.randomUUID().toString();
+        this.timestamp = new Date();
     }
 
-    public int getTransactionId() {
-        return transactionId;
+    public Long generateTransactionNumber() {
+        Random random = new Random();
+        return random.nextLong();
     }
 
-    public Account getAccount() {
+    public Account getAccount(){
         return account;
     }
 
@@ -42,7 +55,24 @@ public class Transaction {
         this.account = account;
     }
 
-    public TransactionType getType() {
+    public BigDecimal getAmounnt(){
+        return amount;
+    }
+
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
+
+
+    public TransactionType getTransactionType() {
         return transactionType;
     }
 
@@ -50,15 +80,27 @@ public class Transaction {
         this.transactionType = transactionType;
     }
 
-    public double getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
-    public LocalDateTime getTimestamp() {
+    public Date getTimestamp() {
         return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getTransactionNumber() {
+        return transactionNumber;
+    }
+
+    public void setTransactionNumber(String transactionNumber) {
+        this.transactionNumber = transactionNumber;
     }
 }

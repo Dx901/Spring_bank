@@ -19,6 +19,7 @@ public class Account {
     public BigDecimal balance;
 
     @Id
+    @GeneratedValue
     @Column(name = "account_number")
     public Long accountNumber;
 
@@ -26,7 +27,7 @@ public class Account {
 
     public BigDecimal amount;
 
-    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "account")
     public Set<Transaction> transactions;
 
     public Account() {}
@@ -71,4 +72,7 @@ public class Account {
     }
 
 
+    public Long getId() {
+        return accountNumber;
+    }
 }

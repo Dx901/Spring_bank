@@ -42,21 +42,6 @@ public class AccountController {
         }
     }
 
-//    @PostMapping("/createaccount")
-//    public ResponseEntity<Account> createAccount(@RequestBody Map<String, Object> requestBody) {
-//        try {
-//            Long userId = Long.parseLong(requestBody.get("userId").toString());
-//            BigDecimal balance = new BigDecimal(requestBody.get("balance").toString());
-//
-//            User user = userService.getUserById(userId);
-//            Account createdAccount = accountService.createAccount(user, balance);
-//
-//            return new ResponseEntity<>(createdAccount, HttpStatus.CREATED);
-//        } catch (NumberFormatException | AccountNotFoundException | NullPointerException e) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
-
     @PostMapping("/createaccount")
     public ResponseEntity<Account> createAccount(@RequestBody ObjectReceiver request) {
             Long userId = request.getUserId();
