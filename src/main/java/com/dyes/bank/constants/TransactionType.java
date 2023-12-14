@@ -1,24 +1,16 @@
 package com.dyes.bank.constants;
 
-import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
-
 public enum TransactionType {
     DEPOSIT,
     WITHDRAWAL;
 
-    public Long accountId;
+    public Long getUserId() {
 
-    public Long getAccountId() {
-        return accountId;
-    }
-
-    public double getAmount() {
-        return getAmount();
-    }
-
-    public TransactionType getTransactionType(Long accountId) {
-        return getTransactionType(accountId);
+        if (this.equals(DEPOSIT)) {
+            return 123L; // Replace with the actual user ID for deposit transactions
+        } else if (this.equals(WITHDRAWAL)) {
+            return 456L; // Replace with the actual user ID for withdrawal transactions
+        }
+        throw new UnsupportedOperationException("Unsupported transaction type");
     }
 }

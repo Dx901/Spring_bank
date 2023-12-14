@@ -3,6 +3,9 @@ package com.dyes.bank.models;
 import com.dyes.bank.constants.TransactionType;
 import jakarta.persistence.*;
 import  com.dyes.bank.constants.AccountType;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.math.BigDecimal;
 import java.util.Random;
@@ -27,7 +30,7 @@ public class Account {
 
     public BigDecimal amount;
 
-    @OneToMany(mappedBy = "account")
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
     public Set<Transaction> transactions;
 
     public Account() {}
@@ -74,5 +77,11 @@ public class Account {
 
     public Long getId() {
         return accountNumber;
+    }
+
+    @Modifying
+    @Query("UPDATE Account a SET a.balance = :balance WHERE a.accountNumber = :accountId")
+    void updateBalance(@Param("accountId") Long accountId, @Param("balance") BigDecimal balance) {
+
     }
 }

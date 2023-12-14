@@ -20,7 +20,6 @@ public class User {
     private Set<Account> accounts;
 
     public String name;
-    public Integer idNumber;
 
     public User() {}
 
@@ -29,24 +28,9 @@ public class User {
         return this.name;
     }
 
-    public Integer getIdNumber() {
-        return this.idNumber;
-    }
-
-
-    public void setIdNumber(Integer id) {
-        this.idNumber = id;
-    }
-
     public void setName(String name) {
         this.name = name;
 
     }
 
-
-    //This ensures yuo add an account to a user when createing a user.
-    public void addAccount(Account account) {
-        accounts.add(account);
-        account.setUser(this);
-    }
 }

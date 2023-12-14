@@ -22,34 +22,34 @@ public class AccountService {
         return accountRepository.findAll();
     }
 
-   @Autowired
+    @Autowired
     public AccountService(AccountRepository accountRepository) {
-       this.accountRepository = accountRepository;
-   }
+        this.accountRepository = accountRepository;
+    }
 
 
 
     //creating an account
     public Account createAccount(User user, BigDecimal balance) {
-       Account account = new Account(user, balance);
-       return accountRepository.save(account);
+        Account account = new Account(user, balance);
+        return accountRepository.save(account);
     }
 
     //get an account by id
     public Account getAccountById(Long accountId) {
-       return accountRepository.findById(accountId)
-               .orElseThrow(() -> new AccountNotFoundException("No account with that ID"));
+        return accountRepository.findById(accountId)
+                .orElseThrow(() -> new AccountNotFoundException("No account with that ID"));
     }
 
     public void updateAccount(Long accountId, Account updatedAccount) {
-       Account existingAccount = getAccountById(accountId);
-       existingAccount.setBalance(updatedAccount.getBalance());
-       accountRepository.save(existingAccount);
+        Account existingAccount = getAccountById(accountId);
+        existingAccount.setBalance(updatedAccount.getBalance());
+        accountRepository.save(existingAccount);
     }
 
     public void deleteAccount(Long accountId) {
-       Account account = getAccountById(accountId);
-       accountRepository.delete(account);
+        Account account = getAccountById(accountId);
+        accountRepository.delete(account);
     }
 
     private Long generateAccountNumber() {

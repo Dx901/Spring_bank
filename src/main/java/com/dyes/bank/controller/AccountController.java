@@ -44,13 +44,13 @@ public class AccountController {
 
     @PostMapping("/createaccount")
     public ResponseEntity<Account> createAccount(@RequestBody ObjectReceiver request) {
-            Long userId = request.getUserId();
-            BigDecimal balance = request.getBalance();
+        Long userId = request.getUserId();
+        BigDecimal balance = request.getBalance();
 
-            User user = userService.getUserById(userId);
-            Account createdAccount = accountService.createAccount(user, balance);
+        User user = userService.getUserById(userId);
+        Account createdAccount = accountService.createAccount(user, balance);
 
-            return new ResponseEntity<>(createdAccount, HttpStatus.CREATED);
+        return new ResponseEntity<>(createdAccount, HttpStatus.CREATED);
     }
 
 
