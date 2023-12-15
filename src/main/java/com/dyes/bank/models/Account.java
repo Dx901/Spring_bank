@@ -1,6 +1,8 @@
 package com.dyes.bank.models;
 
 import com.dyes.bank.constants.TransactionType;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import  com.dyes.bank.constants.AccountType;
 import org.springframework.data.jpa.repository.Modifying;
@@ -17,6 +19,7 @@ public class Account {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonBackReference
     public User user;
 
     public BigDecimal balance;
@@ -31,6 +34,7 @@ public class Account {
     public BigDecimal amount;
 
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     public Set<Transaction> transactions;
 
     public Account() {}

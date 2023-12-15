@@ -1,5 +1,6 @@
 package com.dyes.bank.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 
@@ -17,6 +18,7 @@ public class User {
     public Long userId;
 
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private Set<Account> accounts;
 
     public String name;

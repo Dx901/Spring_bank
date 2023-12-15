@@ -1,6 +1,7 @@
 package com.dyes.bank.models;
 
 import com.dyes.bank.constants.TransactionType;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -16,6 +17,7 @@ public class Transaction {
 
     @ManyToOne
     @JoinColumn(name = "account_id")
+    @JsonBackReference
     public Account account;
 
     @Enumerated(EnumType.STRING)
