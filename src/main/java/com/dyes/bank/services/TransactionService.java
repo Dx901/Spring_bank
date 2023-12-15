@@ -56,6 +56,10 @@ public class TransactionService {
         }
 
         account.setBalance(newBalance);
+
+        if (newBalance.compareTo(BigDecimal.valueOf(500)) >= 0) {
+            account.setIsActive(true);
+        }
         accountRepository.save(account);
     }
 

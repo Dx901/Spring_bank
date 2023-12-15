@@ -3,6 +3,8 @@ package com.dyes.bank.models;
 import com.dyes.bank.constants.TransactionType;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -25,6 +27,7 @@ public class Transaction {
 
     public BigDecimal amount;
 
+    @CreationTimestamp
     public LocalDateTime timestamp;
 
     public Transaction() {

@@ -31,7 +31,6 @@ public class Account {
 
     public Boolean isActive;
 
-    public BigDecimal amount;
 
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
@@ -87,5 +86,9 @@ public class Account {
     @Query("UPDATE Account a SET a.balance = :balance WHERE a.accountNumber = :accountId")
     void updateBalance(@Param("accountId") Long accountId, @Param("balance") BigDecimal balance) {
 
+    }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
     }
 }
