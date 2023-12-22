@@ -53,10 +53,6 @@ public class AccountController {
         return new ResponseEntity<>(createdAccount, HttpStatus.CREATED);
     }
 
-
-
-
-
     @PutMapping("/{accountId}")
     public ResponseEntity<Account> updateAccount(@PathVariable Long accountId, @RequestBody Account updatedAccount) {
         try {
