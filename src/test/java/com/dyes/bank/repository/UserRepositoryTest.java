@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.List;
+import java.util.Optional;
 
 @DataJpaTest
 public class UserRepositoryTest {
@@ -46,5 +47,23 @@ public class UserRepositoryTest {
 
         //then
         assertEquals(2, allUsers.size());
+    }
+
+    @Test
+    public void getUSersById_shouldReturnUser() {
+
+        User user = new User();
+        user.setName("John Pombe");
+
+        User savedUser = userRepository.save(user);
+
+        //When
+        Optional<User> retreivedUserOptional = userRepository.findById(savedUser.getUserId());
+
+        //Then
+        assertTrue(retreivedUserOptional.isPresent());
+        User retreivedUser = retreivedUserOptional.get();
+        assertEquals(savedUser.getUserId(), retreivedUser.getUserId());
+        assertEquals(savedUser.getName(), retreivedUser.getName());
     }
 }
