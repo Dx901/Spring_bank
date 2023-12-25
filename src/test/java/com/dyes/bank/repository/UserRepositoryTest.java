@@ -66,4 +66,18 @@ public class UserRepositoryTest {
         assertEquals(savedUser.getUserId(), retreivedUser.getUserId());
         assertEquals(savedUser.getName(), retreivedUser.getName());
     }
+
+    @Test
+    public void deleteUser_ShouldDeleteUser() {
+        //Given
+        User user = new User();
+        user.setName("Sawka Dyes");
+        User savedUser = userRepository.save(user);
+
+        //When
+        userRepository.deleteById(savedUser.getUserId());
+
+        //Then
+        assertFalse(userRepository.existsById(savedUser.getUserId()));
+    }
 }

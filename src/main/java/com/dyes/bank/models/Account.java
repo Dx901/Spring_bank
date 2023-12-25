@@ -42,7 +42,7 @@ public class Account {
         this.user = user;
         this.balance = balance;
         this.accountNumber = generateAccountNumber();
-
+        this.isActive = false;
     }
 
     public Long generateAccountNumber() {

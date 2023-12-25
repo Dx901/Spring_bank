@@ -17,6 +17,8 @@ public class User {
 
     public Long userId;
 
+    public int idNumber;
+
     @OneToMany(mappedBy = "user")
     @JsonManagedReference
     private Set<Account> accounts;
@@ -41,5 +43,13 @@ public class User {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public int getIdNumber() {
+        return idNumber;
+    }
+
+    public void setIdNumber(int i) {
+        this.idNumber = idNumber;
     }
 }
