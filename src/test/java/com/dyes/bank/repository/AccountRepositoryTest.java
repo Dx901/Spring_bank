@@ -3,6 +3,7 @@ package com.dyes.bank.repository;
 
 import com.dyes.bank.models.Account;
 import com.dyes.bank.models.User;
+import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -34,5 +35,21 @@ public class AccountRepositoryTest {
         //Then
         assertNotNull(savedAccount.getId());
         assertEquals(account.getBalance(), savedAccount.getBalance());
+    }
+
+    @Test
+    public void findAccountById() {
+        //Given
+        Account account = new Account();
+        account.setBalance(new BigDecimal("500.00"));
+        Account savedAccount = accountRepository.save(account);
+
+        //When
+        Account retrievedAccount = accountRepository.findById(savedAccount.getId()).orElse(null);
+
+        //Then
+        assertNotNull(retrievedAccount);
+        assertEquals(savedAccount.getId(), retrievedAccount.getId());
+        assertEquals(savedAccount.getBalance(), retrievedAccount.getBalance());
     }
 }
