@@ -15,7 +15,7 @@ public class Transaction {
     @Id
     @GeneratedValue
     @Column(name = "transaction_id")
-    public Long id;
+    public Long transactionId;
 
     @ManyToOne
     @JoinColumn(name = "account_id")
@@ -44,5 +44,9 @@ public class Transaction {
         this.account = account;
         this.transactionType = transactionType;
         this.amount = amount;
+    }
+
+    public long getTransactionId() {
+        return transactionId;
     }
 }
