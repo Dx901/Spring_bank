@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
+import com.dyes.bank.repository.AccountRepository;
 
 import java.math.BigDecimal;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
@@ -51,5 +51,38 @@ public class AccountRepositoryTest {
         assertNotNull(retrievedAccount);
         assertEquals(savedAccount.getId(), retrievedAccount.getId());
         assertEquals(savedAccount.getBalance(), retrievedAccount.getBalance());
+    }
+
+//    @Test
+//    public void updateAccountBalance_shouldReturnUpdate() {
+//        //Given
+//        Account account = new Account();
+//        account.setBalance(new BigDecimal("1000.00"));
+//        Account savedAccount = accountRepository.save(account);
+//
+//        //When
+//        accountRepository.updateBalance(savedAccount.getId(), new BigDecimal("1500.00"));
+//
+//        //Then
+//        Account updatedAccount = accountRepository.findById(savedAccount.getId()).orElse(null);
+//        assertNotNull(updatedAccount);
+//        assertEquals(new BigDecimal("1500.00"), updatedAccount.getBalance());
+//    }
+
+
+
+
+    @Test
+    public void deleteAccount_shouldDeleteAccount() {
+        //Given
+        Account account = new Account();
+        account.setBalance(new BigDecimal("1000.00"));
+        Account savedAccount = accountRepository.save(account);
+
+        //When
+        accountRepository.delete(savedAccount);
+
+        //Then
+        assertFalse(accountRepository.existsById(savedAccount.getId()));
     }
 }
