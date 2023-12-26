@@ -72,10 +72,16 @@ public class TransactionService {
         return transactionRepository.save(transaction);
     }
 
-    public Transaction getTransactionById(Long transactionId) throws InstantiationException, IllegalAccessException {
-        return transactionRepository.findById(transactionId.getClass().newInstance())
+//    public Transaction getTransactionById(Long transactionId) throws InstantiationException, IllegalAccessException {
+//        return transactionRepository.findById(transactionId.getClass().newInstance())
+//                .orElseThrow(() -> new TransactionNotFoundException("No transaction with that ID"));
+//    }
+
+    public Transaction getTransactionById(Long transactionId) throws TransactionNotFoundException {
+        return transactionRepository.findById(transactionId)
                 .orElseThrow(() -> new TransactionNotFoundException("No transaction with that ID"));
     }
+
 
 
 
