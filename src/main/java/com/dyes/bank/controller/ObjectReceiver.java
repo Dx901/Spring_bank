@@ -22,4 +22,11 @@ public class ObjectReceiver {
         return balance;
     }
 
+    public void setUSerId(Long userId) {
+        this.userId = userId;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
+    }
 }
