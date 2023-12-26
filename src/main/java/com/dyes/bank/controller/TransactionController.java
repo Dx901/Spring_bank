@@ -75,6 +75,17 @@ public class TransactionController {
         }
 
 
+        public void setAccountId(Long accountId) {
+            this.accountId = accountId;
+        }
+
+        public void setTransactionType(TransactionType transactionType){
+            this.transactionType = transactionType;
+        }
+
+        public void setAmount(BigDecimal amount) {
+            this.amount = amount;
+        }
     }
 }
 

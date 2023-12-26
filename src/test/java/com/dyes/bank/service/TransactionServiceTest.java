@@ -70,7 +70,7 @@ public class TransactionServiceTest {
     }
 
     @Test
-    void createTransaction_shouldThrowAccountNotFoundException() {
+    public void createTransaction_shouldThrowAccountNotFoundException() {
         // Arrange
         Long accountId = 1L;
         TransactionType transactionType = TransactionType.DEPOSIT;
